@@ -1,6 +1,8 @@
 # Random Password Generator in Kotlin
 This is a simple program written in Kotlin that generates a random password of a specified length.
-
+<h1 align="center">Language
+ 
+ ![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)
 # Requirements
 • Kotlin
 # Usage
