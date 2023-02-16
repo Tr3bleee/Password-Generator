@@ -1,33 +1,30 @@
-import java.util.*
-import kotlin.random.Random
-
 fun main() {
     // Prompt the user to enter "R"
     println("Press R to generate a random password.")
 
-    // Read the user's input
-    val input = readlnOrNull()
+    // Read the user's input and check if it is "R" (ignoring caps lock)
+    if (readlnOrNull()?.uppercase() == "R") {
+        // Prompt the user to enter the desired password length
+        println("Enter the password length: (6-30)")
 
-    // Check if the input is "R" (ignoring caps lock)
-    if (input?.uppercase(Locale.getDefault()) == "R") {
-        // Create a random number generator
-        val random = Random
+        // Read the user's input and parse it as an integer, defaulting to 0 if null
+        val passwordLength = readlnOrNull()?.toIntOrNull() ?: 0
 
-        // Generate a random length for the password (between 6 and 14)
-        val passwordLength = random.nextInt(9) + 6
+        // Check if the password length is valid (between 6 and 30)
+        if (passwordLength in 6..30) {
+            // Generate a password of the specified length
+            val password = CharArray(passwordLength) {
+                // Choose a random character range (lowercase letters, uppercase letters, or digits)
+                // and choose a random character from the chosen range
+                listOf('a'..'z', 'A'..'Z', '0'..'9').random().random()
+            }
 
-        // Generate a password of the specified length
-        val password = CharArray(passwordLength) {
-            // Choose a random character range (lowercase letters, uppercase letters, or digits)
-            val ranges = listOf('a'..'z', 'A'..'Z', '0'..'9')
-            val range = ranges.random(random)
-
-            // Choose a random character from the chosen range
-            range.random(random)
+            // Print the generated password
+            println("Password: ${password.joinToString("")}")
+        } else {
+            // Print an error message if the password length is invalid
+            println("Invalid password length.")
         }
-
-        // Print the generated password
-        println("Password: ${password.joinToString("")}")
     } else {
         // Print an error message if the input is invalid
         println("Invalid input.")
